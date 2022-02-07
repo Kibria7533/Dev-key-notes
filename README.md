@@ -1,15 +1,11 @@
-# Docker-key-nots
-![image info](./)
-
-# Pods commands
-# pods->notes
+# kubernetics->notes
 - we can use sigular /plural or short form command like --
 ```
 kubectl get pod or kubectl get pods or kubectl get po
  ```
  - creating first pod with generator
  ```
- kubectl run pod --generator=run-pod/v1 --image=coolgourav/nginx-custom ---generator wont work deprecated-----right command is=kubectl run gouravpod --image=coolgourav147/nginx-custom
+ kubectl run pod --generator=run-pod/v1 --image=coolgourav/nginx-custom ---generator wont work deprecated
  kubectl run --image=nginx:alpine myfirstpod -- labels=example=myfirstpod
  ```
  - (kubectl get po -o wide ) for details in which node this pod is running
@@ -22,6 +18,7 @@ For yml and json format
  ```
  Suppose you dont know what is pod then you can learn from it
  kubectl explain pods | less
+ kubectl explain pod --recursive | less
  ```
  
  ```
@@ -31,8 +28,40 @@ For yml and json format
  ```
  Delete a pod either crashloopback or anything
  kubectl delete pod  myfirstpod
+ kubectl delete pods --all
+ kubectl edit pod podname
  ```
  ```
  watch pod creating
  kubectl get pod -w
+ ```
+ 
+ ```
+ General form of cmd
+ kubectl actionname resource_type resource_name data
+ ex:
+ kubectl label pod myfirstpod evn1=lool
+ Suppose you want to label all pods
+ kubectl label pod --all evn1=lool
+ ```
+ ```
+ kubectl get pods --show-labels
+ ```
+ 
+ ```
+ Run command inside a pod container
+ kubectl exec podname env
+ If you have multiple container inside your pod
+ kubectl exec podname -c container_name
+ 
+ Then go to your bash of your container
+ kubectl exec podname -it bash
+ But if you have multiple container
+ kubectl exec podname -c container_name -it bash
+ ```
+ 
+ 
+ ```
+ set command inside a container
+ args:['sleep','50']
  ```
