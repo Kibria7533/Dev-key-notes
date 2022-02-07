@@ -9,7 +9,7 @@ kubectl get pod or kubectl get pods or kubectl get po
  ```
  - creating first pod with generator
  ```
- kubectl run pod --generator=run-pod/v1 --image=coolgourav/nginx-custom ---generator wont work deprecated
+ kubectl run pod --generator=run-pod/v1 --image=coolgourav/nginx-custom ---generator wont work deprecated-----right command is=kubectl run gouravpod --image=coolgourav147/nginx-custom
  kubectl run --image=nginx:alpine myfirstpod -- labels=example=myfirstpod
  ```
  - (kubectl get po -o wide ) for details in which node this pod is running
