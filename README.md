@@ -78,9 +78,9 @@ For yml and json format
  
  ```
  Suppose we have three pod and if we assign a cluster ip then they can communicate with each other but for out side communication we will need node port.Seeing this bellow pictur will give you a clear idea.
- ![](./service.png)
- ```
  
+ ```
+ ![](./service.png)
  
  
  
