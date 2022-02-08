@@ -78,12 +78,31 @@ For yml and json format
  
  ```
  Suppose we have three pod and if we assign a cluster ip then they can communicate with each other but for out side communication we will need node port.Seeing this bellow pictur will give you a clear idea.
+ ```
+  ![](./service.png)
+   ![](./clusteripvsnodeport.jpeg)
+ ```
+ So we are creating service to communicate between nodes
+ kubectl expose pod podname --port=8000 --target-port=80 --name myservice
+ Here we check this using 
+ kubectl get svc/service/services
+ and we will see port an ip
+ then 
+ curl ip:8000
+ ```
  
  ```
- ![](./service.png)
+ Lets talk about node port assign and accesing from out side world
+ kubectl expose pod podname --type=NodePort --port=8000 --target-port=80 --name myservice(not worked in minikube)
+ ```
  
- 
- 
+ ```
+ How service work
+ In service yml we have and selector.So if any pod has same label like service selector then the service will devide request to each pod
+ lets add label to some pod like this (kubectl label pod myfirstpod evn1=lool)
+ and selector like  below picture
+ ```
+   ![](./selector.png)
  
  
  
