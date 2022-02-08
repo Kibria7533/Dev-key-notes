@@ -65,3 +65,39 @@ For yml and json format
  set command inside a container
  args:['sleep','50']
  ```
+ ```
+ How to grep name in pod1.yml
+ grep name podname.yml
+ ```
+ ```
+ How to make a contaner to listen to any particular port?
+ netcat -l -p 8000
+ And how to see how many ports is opend?
+ netstat -nltp
+ ```
+ 
+ ```
+ Suppose we have three pod and if we assign a cluster ip then they can communicate with each other but for out side communication we will need node port.Seeing this bellow pictur will give you a clear idea.
+ ![](./service.png)
+ ```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
