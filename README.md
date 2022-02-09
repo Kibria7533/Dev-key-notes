@@ -162,7 +162,10 @@ spec:
   To go to particular deployment
   kubectl rollout undo --to-revision=2  deployment name_of_the_deployment
   
-  TO rollbact to any prvious rollout -
+  To pause a deployment
+  kubectl rollout pause deployment name_of_the_deployment
+    kubectl rollout resume deployment name_of_the_deployment
+  
   
   kubectl apply -f firstdeploy.yml --record (attach the messege auto generated but in yml if we add annotations messege will be set)
   apiVersion: apps/v1
@@ -189,10 +192,12 @@ spec:
  ```
  
  ```
- 
- 
+ Now we are talking about resource and limit
+ *How to check  how much memory a container take ?->docker container stats container_id(and we wil see memeory uses and memory limit)
+ But we wand to fixed memory and cpu
+ then see the below image while pod creating
  ```
- 
+ ![](./reqlimit.png)
  
  
  
