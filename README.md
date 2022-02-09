@@ -16,6 +16,8 @@ For yml and json format
 
  ```
  ```
+ If we want to get any resource shot form then
+ kubectl api-resource | grep -i limit
  Suppose you dont know what is pod then you can learn from it
  kubectl explain pods | less
  kubectl explain pod --recursive | less
@@ -212,12 +214,28 @@ spec:
  kubectl get pods --all-namespaces(to see all namespaces pod)
  kubectl delete pod podname -n test(delete a pod from pod namespace)
  ```
+ ```
+ kubectl create ns myns
+ If we want to connect with other namespace service then first enter into that and
+ curl servicename.namespacename.svc.cluster.local
+ ```
+ ```
+ Resource qouta is basicaly defining nameapaces resource limit/specification
+ like 
+ There is two type of quota ->compute qouta(request.cpu) and object qouta(can set number of object like pod:"2")
+ if we only set limit but dont set resource then it automaticaly set resource same as limit
+ kubectl get resourcequotas -n myns
+ kubectl appl -f qouta.yml --namespace=myns
+ kubectl describe ns myns(we will see its qouta)
+ And take a look on below qouta.yml
+ ```
+  ![](./qouta.png)
  
  
- 
- 
- 
- 
+ ```
+ We can create limitRange and set to any namespace
+ kubectl apply -f firstlimit.yml -n myns
+ ```
  
  
  
