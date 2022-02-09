@@ -199,7 +199,19 @@ spec:
  ```
  ![](./reqlimit.png)
  
- 
+ ```
+ In defaul mood all resource being created on default namespace but there is another namespace pulic where no auth need to access
+ Here also we will see(kubectl get pods -n kube-system) a lot of pods which control the master system management
+ We can also change default namespace also(kubectl config set-context --current --namespace=test)
+ How to check a resource support namespace or not?
+ kubectl api-resource | grep -i pod
+ kubectl apply -f pod_yml --namespace test (then a pod will be created on test namespace so if we run kubectl get pods
+ it will not show any pods)
+ To see pods belongs to test namespace
+ kubectl get pods -n test
+ kubectl get pods --all-namespaces(to see all namespaces pod)
+ kubectl delete pod podname -n test(delete a pod from pod namespace)
+ ```
  
  
  
