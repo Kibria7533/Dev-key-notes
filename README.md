@@ -104,10 +104,94 @@ For yml and json format
  ```
    ![](./selector.png)
  
+ ```
+ If we run rc then it creates replicas as per template but if same label pod already created then it will not create any pod //but but if existing pods woner is other rc then according to new rc pod will be created
+ 
+ - If we dont put any selector then by default it take template label
+ apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        if we delete a pods label (app=nginx) then it automaticaly creats immidiatly 
+        if we delete a rc its also terminate all its riplicas
+        but if we use cascade=false then it only delete rc
+ kubectl delete rc --cascade=false  nginx
+
+ ```
+ 
+ ```
+ Scalling up and Down is quite easy .We can set number of replica by vi command or
+ kubectl scale rc --replical=5 replicaControllerName
+ Or siply editing 
+ kubectl edit rc name
+ ```
+ 
+ ```
+ Actualy replicaset are most of the part are equal like replication controller
+ But but some extra facilites like we can match labels expression using (In or Not In)
+ ```
+ 
+   ![](./rcset.png)
+ 
+ ```
+ Deployment is very likely to replication with litle change in yml
+ it has rollout means new version deploy 
+ it has rollback means go back to old version
+ it has recreat policy -- in which it make replica=0 of old version and replica=6 of new version
+  We can similarly inc or dec the number of replica here also
+  Rollout only trigard while we change on its spec only(i mean new version)
+  maximumUnavalabe is quite clear that this amount of pod can  be missing
+  maximaum surge means this amount of extra pod can be created 
+  kubectl rollout history deployment name_of_the_deployment(just work like ctrl+z and ctrl+y----> kubectl rollout undo  deployment name_of_the_deployment)
+  
+  To go to particular deployment
+  kubectl rollout undo --to-revision=2  deployment name_of_the_deployment
+  
+  TO rollbact to any prvious rollout -
+  
+  kubectl apply -f firstdeploy.yml --record (attach the messege auto generated but in yml if we add annotations messege will be set)
+  apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+ ```
+ 
+ ```
  
  
- 
- 
+ ```
  
  
  
