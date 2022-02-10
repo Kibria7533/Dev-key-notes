@@ -252,5 +252,32 @@ spec:
  Now lets build config map from directory->if we have four file with different keys then running bellow this command will merged all files and its coresponding variables
  kubectl create cm cm_name --from-file=properties/
  ```
+ ```
+ We can also creat config map from env file 
  
+ kubectl create cm cm_name --from-env-file=env.sh 
+ here comment will be ignored and alike from file its variable and keypair will be 
+ ```
+ 
+ ```
+ We can create configmap from yml file 
+ apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"
+  ui_properties_file_name: "user-interface.properties"
+
+  # file-like keys
+  game.properties: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5    
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true   
+    this (game.properties ) are like files
+ ```
  
