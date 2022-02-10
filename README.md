@@ -235,7 +235,22 @@ spec:
  ```
  We can create limitRange and set to any namespace
  kubectl apply -f firstlimit.yml -n myns
+ We can also set limit/resource ratio in yml like below image
  ```
+   ![](./maxlr.png)
+ ```
+ Config map is decuple the configuration of a pod /It can be ingect not only pof but also other resource
+ Config map can be created in sevaral ways 
  
+ like(from literal)
+ kubectl create configmap special-config --from-literal=special.how=very --from-literal=special.type=charm
+ 
+ Create  configmap from file 
+ kubectl create cm cm_name --from-file=filename
+ Create configmap from two file 
+ kubectl create cm cm_name --from-file=filename --from-file=another_file_name
+ Now lets build config map from directory->if we have four file with different keys then running bellow this command will merged all files and its coresponding variables
+ kubectl create cm cm_name --from-file=properties/
+ ```
  
  
