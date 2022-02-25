@@ -1,4 +1,5 @@
 # kubernetics->notes
+ ![](./kubernetics_architect.png)
 - we can use sigular /plural or short form command like --
 ```
 kubectl get pod or kubectl get pods or kubectl get po
